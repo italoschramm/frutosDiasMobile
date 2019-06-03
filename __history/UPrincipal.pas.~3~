@@ -1,0 +1,137 @@
+unit UPrincipal;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
+  Data.DBXDataSnap, Data.DBXCommon, IPPeerClient, IdThreadComponent,
+  FMX.StdCtrls, FMX.Layouts, FMX.Ani, FMX.Edit, FMX.ListBox, FMX.Objects,
+  FMX.TabControl, FMX.Controls.Presentation, IdBaseComponent, FMX.jsAuth,
+  Datasnap.DBClient, Datasnap.DSConnect, Data.DB, Data.SqlExpr;
+
+type
+  TForm2 = class(TForm)
+    SQLConnection1: TSQLConnection;
+    DSProviderConnection1: TDSProviderConnection;
+    jsAuthFacebook: TjsAuthFacebook;
+    thread_novo_carro: TIdThreadComponent;
+    thread_venda_direta: TIdThreadComponent;
+    ToolBar1: TToolBar;
+    Image6: TImage;
+    btvoltar: TImage;
+    lbtitulo: TLabel;
+    VertScrollBox1: TVertScrollBox;
+    MainLayout1: TScaledLayout;
+    TabControl2: TTabControl;
+    tblogin: TTabItem;
+    Rectangle1: TRectangle;
+    Layout9: TLayout;
+    Layout1: TLayout;
+    Image4: TImage;
+    Layout6: TLayout;
+    Layout8: TLayout;
+    cbservidor: TComboBox;
+    login_email: TImage;
+    Layout22: TLayout;
+    Layout10: TLayout;
+    btfacebook: TImage;
+    tbcadastrar: TTabItem;
+    Rectangle2: TRectangle;
+    Layout11: TLayout;
+    Layout34: TLayout;
+    ednome: TEdit;
+    ColorAnimation3: TColorAnimation;
+    Label16: TLabel;
+    Layout35: TLayout;
+    Layout36: TLayout;
+    Layout37: TLayout;
+    Layout38: TLayout;
+    Layout39: TLayout;
+    Label1: TLabel;
+    edtelefone: TEdit;
+    ColorAnimation2: TColorAnimation;
+    Layout40: TLayout;
+    Layout41: TLayout;
+    Label17: TLabel;
+    edsenha1: TEdit;
+    ColorAnimation4: TColorAnimation;
+    Layout42: TLayout;
+    Layout43: TLayout;
+    Label18: TLabel;
+    edsenha2: TEdit;
+    ColorAnimation5: TColorAnimation;
+    Layout44: TLayout;
+    Layout7: TLayout;
+    Label15: TLabel;
+    edemail: TEdit;
+    ColorAnimation1: TColorAnimation;
+    ScaledLayout2: TScaledLayout;
+    edcpf: TEdit;
+    Label14: TLabel;
+    ScaledLayout6: TScaledLayout;
+    btsalvar: TImage;
+    Layout33: TLayout;
+    btemail: TImage;
+    tbprincipal: TTabItem;
+    GridPanelLayout1: TGridPanelLayout;
+    btnovocarro: TButton;
+    Image1: TImage;
+    Label2: TLabel;
+    Label9: TLabel;
+    btagendar: TButton;
+    Image3: TImage;
+    Label4: TLabel;
+    btconsorcio: TButton;
+    Image7: TImage;
+    Label5: TLabel;
+    btrevisoes: TButton;
+    Image10: TImage;
+    Label6: TLabel;
+    btvendadireta: TButton;
+    Image2: TImage;
+    Label3: TLabel;
+    Label10: TLabel;
+    btconfiguracoes: TButton;
+    Image5: TImage;
+    Label7: TLabel;
+    tbtelefone: TTabItem;
+    Layout12: TLayout;
+    Layout13: TLayout;
+    Layout14: TLayout;
+    edtelefone_contato: TEdit;
+    Layout15: TLayout;
+    Layout16: TLayout;
+    btfinalizar: TImage;
+    Layout17: TLayout;
+    Layout18: TLayout;
+    Layout19: TLayout;
+    ComboBox1: TComboBox;
+    Layout20: TLayout;
+    Label8: TLabel;
+    tblogin_email: TTabItem;
+    Layout4: TLayout;
+    btentrar: TImage;
+    Layout3: TLayout;
+    edsenha: TEdit;
+    Layout2: TLayout;
+    edlogin_email: TEdit;
+    Layout21: TLayout;
+    Layout23: TLayout;
+    Image8: TImage;
+    Layout24: TLayout;
+    AniIndicator: TAniIndicator;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+{$R *.fmx}
+
+end.

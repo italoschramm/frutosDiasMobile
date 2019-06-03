@@ -1,0 +1,14 @@
+program Frutosdias;
+
+uses
+  System.StartUpCopy,
+  FMX.Forms,
+  UPrincipal in 'UPrincipal.pas' {f_principal};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(Tf_principal, f_principal);
+  Application.Run;
+end.

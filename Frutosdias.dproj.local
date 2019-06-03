@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2018/03/01 14:11:42.000.640,=C:\Users\italo_000\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2018/03/01 14:12:36.000.005,C:\Users\italo_000\Documents\Embarcadero\Studio\Projects\Unit2.pas=C:\Google Drive\GoogleDrive\Desenvolvimento\Frutos Dias\Mobile5\UPrincipal.pas</Transaction>
+    <Transaction>2018/03/01 14:12:36.000.005,C:\Users\italo_000\Documents\Embarcadero\Studio\Projects\Unit2.fmx=C:\Google Drive\GoogleDrive\Desenvolvimento\Frutos Dias\Mobile5\UPrincipal.fmx</Transaction>
+    <Transaction>2018/03/01 14:12:39.000.387,C:\Users\italo_000\Documents\Embarcadero\Studio\Projects\Project3.dproj=C:\Google Drive\GoogleDrive\Desenvolvimento\Frutos Dias\Mobile5\Frutosdias.dproj</Transaction>
+    <Transaction>2018/03/01 14:19:34.000.496,=C:\Google Drive\GoogleDrive\Desenvolvimento\Frutos Dias\Mobile5\UAgendamento.pas</Transaction>
+    <Transaction>2018/03/01 14:19:34.000.769,=C:\Google Drive\GoogleDrive\Desenvolvimento\Frutos Dias\Mobile5\UConfiguracoes.pas</Transaction>
+    <Transaction>2018/03/01 14:19:35.000.344,=C:\Google Drive\GoogleDrive\Desenvolvimento\Frutos Dias\Mobile5\UConsorcio.pas</Transaction>
+    <Transaction>2018/03/01 14:19:37.000.961,=C:\Google Drive\GoogleDrive\Desenvolvimento\Frutos Dias\Mobile5\UNovo_carro.pas</Transaction>
+    <Transaction>2018/03/01 14:19:38.000.903,=C:\Google Drive\GoogleDrive\Desenvolvimento\Frutos Dias\Mobile5\URevisoes.pas</Transaction>
+    <Transaction>2018/03/01 14:19:38.000.917,=C:\Google Drive\GoogleDrive\Desenvolvimento\Frutos Dias\Mobile5\UServerClasses.pas</Transaction>
+    <Transaction>2018/03/01 14:19:39.000.198,=C:\Google Drive\GoogleDrive\Desenvolvimento\Frutos Dias\Mobile5\UVenda_Direta.pas</Transaction>
+    <Transaction>2018/03/01 15:04:14.000.648,=C:\Google Drive\GoogleDrive\Desenvolvimento\Frutos Dias\Mobile5\Unit1.pas</Transaction>
+    <Transaction>2018/03/01 15:04:32.000.178,C:\Google Drive\GoogleDrive\Desenvolvimento\Frutos Dias\Mobile5\UServerClasses.pas=</Transaction>
+    <Transaction>2018/03/01 15:04:36.000.638,C:\Google Drive\GoogleDrive\Desenvolvimento\Frutos Dias\Mobile5\Unit1.pas=C:\Google Drive\GoogleDrive\Desenvolvimento\Frutos Dias\Mobile5\UServerClasses.pas</Transaction>
+  </Transactions>
+	<ActiveMobileDevice>
+		<PMACITALO iOSSimulator="_iossimulator_2C3CDFBD-7ACC-4BD5-9825-ECACDBA6D81C"/>
+		<NoProfile Android="" iOSSimulator="iPhone5"/>
+	</ActiveMobileDevice>
+	<BT_BuildType>AppStore</BT_BuildType>
+</BorlandProject>

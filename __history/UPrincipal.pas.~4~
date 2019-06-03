@@ -1,0 +1,1246 @@
+unit UPrincipal;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
+  Data.DBXDataSnap, IPPeerClient, Data.DBXCommon, Data.DbxSqlite, FMX.StdCtrls,
+  FMX.Layouts, FMX.Ani, FMX.ListBox, FMX.Edit, FMX.TabControl, FMX.Objects,
+  FMX.Controls.Presentation, Datasnap.DBClient, Datasnap.DSConnect, Data.DB,
+  Data.SqlExpr, FMX.VirtualKeyboard,  FMX.jsAuth,
+  FMX.ScrollBox, FMX.Memo, IniFiles, System.Math, IdBaseComponent,
+  IdThreadComponent;
+  //System.Android.Service;
+
+type
+  Tf_principal = class(TForm)
+    SQLConnection1: TSQLConnection;
+    DSProviderConnection1: TDSProviderConnection;
+    ToolBar1: TToolBar;
+    Image6: TImage;
+    btvoltar: TImage;
+    lbtitulo: TLabel;
+    VertScrollBox1: TVertScrollBox;
+    MainLayout1: TScaledLayout;
+    TabControl2: TTabControl;
+    tblogin: TTabItem;
+    tbcadastrar: TTabItem;
+    tbprincipal: TTabItem;
+    GridPanelLayout1: TGridPanelLayout;
+    btnovocarro: TButton;
+    Image1: TImage;
+    Label2: TLabel;
+    btagendar: TButton;
+    Image3: TImage;
+    Label4: TLabel;
+    btconsorcio: TButton;
+    Image7: TImage;
+    Label5: TLabel;
+    btrevisoes: TButton;
+    Image10: TImage;
+    Label6: TLabel;
+    btvendadireta: TButton;
+    Image2: TImage;
+    Label3: TLabel;
+    btconfiguracoes: TButton;
+    Image5: TImage;
+    Label7: TLabel;
+    Layout9: TLayout;
+    Layout1: TLayout;
+    Image4: TImage;
+    Layout6: TLayout;
+    Layout8: TLayout;
+    cbservidor: TComboBox;
+    Rectangle1: TRectangle;
+    Layout10: TLayout;
+    btfacebook: TImage;
+    Layout11: TLayout;
+    Layout34: TLayout;
+    ednome: TEdit;
+    ColorAnimation3: TColorAnimation;
+    Label16: TLabel;
+    Layout35: TLayout;
+    Layout36: TLayout;
+    Layout37: TLayout;
+    Layout38: TLayout;
+    Layout39: TLayout;
+    Label1: TLabel;
+    edtelefone: TEdit;
+    ColorAnimation2: TColorAnimation;
+    Layout40: TLayout;
+    Layout41: TLayout;
+    Label17: TLabel;
+    edsenha1: TEdit;
+    ColorAnimation4: TColorAnimation;
+    Layout42: TLayout;
+    Layout43: TLayout;
+    Label18: TLabel;
+    edsenha2: TEdit;
+    ColorAnimation5: TColorAnimation;
+    Layout44: TLayout;
+    Layout7: TLayout;
+    Label15: TLabel;
+    edemail: TEdit;
+    ColorAnimation1: TColorAnimation;
+    ScaledLayout2: TScaledLayout;
+    edcpf: TEdit;
+    Label14: TLabel;
+    ScaledLayout6: TScaledLayout;
+    btsalvar: TImage;
+    Rectangle2: TRectangle;
+    thread_novo_carro: TIdThreadComponent;
+    thread_venda_direta: TIdThreadComponent;
+    tbtelefone: TTabItem;
+    Layout12: TLayout;
+    Layout13: TLayout;
+    Layout14: TLayout;
+    Layout15: TLayout;
+    Layout16: TLayout;
+    Layout17: TLayout;
+    Layout18: TLayout;
+    Layout19: TLayout;
+    ComboBox1: TComboBox;
+    Layout20: TLayout;
+    AniIndicator: TAniIndicator;
+    Label8: TLabel;
+    edtelefone_contato: TEdit;
+    btfinalizar: TImage;
+    Layout33: TLayout;
+    btemail: TImage;
+    tblogin_email: TTabItem;
+    Layout4: TLayout;
+    btentrar: TImage;
+    Layout3: TLayout;
+    edsenha: TEdit;
+    Layout2: TLayout;
+    edlogin_email: TEdit;
+    Layout21: TLayout;
+    login_email: TImage;
+    Layout22: TLayout;
+    Layout23: TLayout;
+    Image8: TImage;
+    Layout24: TLayout;
+    Label9: TLabel;
+    Label10: TLabel;
+    jsAuthFacebook: TjsAuthFacebook;
+    procedure conectar;
+    procedure edlogin_emailKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
+    procedure edlogin_emailClick(Sender: TObject);
+    procedure edlogin_emailExit(Sender: TObject);
+    procedure edsenhaClick(Sender: TObject);
+    procedure edsenhaKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
+    procedure btentrarClick(Sender: TObject);
+    procedure btnovocarroClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure btvendadiretaClick(Sender: TObject);
+    procedure btagendarClick(Sender: TObject);
+    procedure btconsorcioClick(Sender: TObject);
+    procedure btrevisoesClick(Sender: TObject);
+    procedure btemailClick(Sender: TObject);
+    procedure btcadastrarClick(Sender: TObject);
+    procedure btfacebookClick(Sender: TObject);
+    procedure arquivo_ini_salvar;
+    procedure arquivo_ini_ler;
+    procedure btconfiguracoesClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure Image1Click(Sender: TObject);
+    procedure Image2Click(Sender: TObject);
+    procedure Image10Click(Sender: TObject);
+    procedure Image3Click(Sender: TObject);
+    procedure Image7Click(Sender: TObject);
+    procedure Image5Click(Sender: TObject);
+    procedure Label2Click(Sender: TObject);
+    procedure Label3Click(Sender: TObject);
+    procedure Label6Click(Sender: TObject);
+    procedure Label4Click(Sender: TObject);
+    procedure Label5Click(Sender: TObject);
+    procedure Label7Click(Sender: TObject);
+    procedure btsalvarClick(Sender: TObject);
+    procedure btvoltarClick(Sender: TObject);
+    procedure ednomeKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
+    procedure edcpfKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
+    procedure edemailKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
+    procedure edtelefoneKeyDown(Sender: TObject; var Key: Word;
+      var KeyChar: Char; Shift: TShiftState);
+    procedure edsenha1KeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
+    procedure edsenha2KeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
+    procedure FormVirtualKeyboardHidden(Sender: TObject;
+      KeyboardVisible: Boolean; const Bounds: TRect);
+    procedure FormVirtualKeyboardShown(Sender: TObject;
+      KeyboardVisible: Boolean; const Bounds: TRect);
+    procedure FormFocusChanged(Sender: TObject);
+    procedure thread_novo_carroRun(Sender: TIdThreadComponent);
+    procedure thread_venda_diretaRun(Sender: TIdThreadComponent);
+    procedure edtelefone_contatoClick(Sender: TObject);
+    procedure edtelefone_contatoExit(Sender: TObject);
+    procedure btfinalizarClick(Sender: TObject);
+    function validar_cpf(num : string) : boolean;
+    procedure edtelefoneEnter(Sender: TObject);
+    procedure edtelefoneExit(Sender: TObject);
+    procedure edtelefoneClick(Sender: TObject);
+    procedure login_emailClick(Sender: TObject);
+    procedure edtelefone_contatoEnter(Sender: TObject);
+  private
+     FKBBounds : TRectF;
+     FNeedOffset : boolean;
+
+     Procedure CalcContentBounds(Sender: TObject; var ContentBounds: TRectF);
+     procedure RestorePosition;
+     Procedure UpdatePosition;
+    { Private declarations }
+  public
+  servidor, cod_cliente_nbs, nome, senha, email, telefone, cpf, login1, senha1, facebook : string;
+
+    { Public declarations }
+  end;
+
+var
+  f_principal: Tf_principal;
+
+implementation
+
+{$R *.fmx}
+{$R *.LgXhdpiPh.fmx ANDROID}
+
+uses UAgendamento, UConfiguracoes, UConsorcio, UNovo_carro, URevisoes,
+  UVenda_Direta, UServerClasses, System.IOUtils;
+
+var
+
+server : TServerMethods1client;
+
+function Tf_principal.validar_cpf(num: string) : boolean;
+var
+n1,n2,n3,n4,n5,n6,n7,n8,n9:integer;
+d1,d2,i,j:integer;
+digitado, calculado:string;
+begin
+
+      d1 := 0;
+      //n1:= StrToInt(num[0]);
+      n2:= StrToInt(num[1]);
+      n3:= StrToInt(num[2]);
+      n4:= StrToInt(num[3]);
+      n5:= StrToInt(num[4]);
+      n6:= StrToInt(num[5]);
+      n7:= StrToInt(num[6]);
+      n8:= StrToInt(num[7]);
+      n9:= StrToInt(num[8]);
+
+      d1:= (n9*2)+(n8*3)+(n7*4)+(n6*5)+(n5*6)+(n4*7)+(n3*8)+(n2*9)+(n1*10);
+      d1:= 11-(d1 mod 11);
+      if d1>=10 then d1:=0;
+      d2:= (d1*2)+(n9*3)+(n8*4)+(n7*5)+(n6*6)+(n5*7)+(n4*8)+(n3*9)+(n2*10)+(n1*11);
+      d2:= 11-(d2 mod 11);
+      if d2>=10 then d2:=0;
+      calculado:= inttostr(d1)+inttostr(d2);
+      digitado:= num[9]+num[10];
+      if calculado = digitado then
+      begin
+            result:=true;
+
+      end
+      else
+      begin
+            result:=false;
+
+      end;
+end;
+
+procedure Tf_principal.arquivo_ini_ler;
+var
+    Arquivo : TIniFile;
+begin
+     Arquivo := TIniFile.Create(GetHomePath + PathDelim + 'frutos.ini');
+     login1 := Arquivo.ReadString('1','login','');
+     senha1 := Arquivo.ReadString('2','senha','');
+     facebook := Arquivo.ReadString('3','facebook','');
+     Arquivo.Free;
+end;
+
+procedure Tf_principal.arquivo_ini_salvar;
+var
+    Arquivo : TIniFile;
+begin
+     Arquivo := TIniFile.Create(GetHomePath + PathDelim + 'frutos.ini');
+     Arquivo.WriteString('1','login', login1);
+     Arquivo.WriteString('2', 'senha', senha1);
+     Arquivo.WriteString('3', 'facebook', facebook);
+     Arquivo.Free;
+
+end;
+
+procedure Tf_principal.btagendarClick(Sender: TObject);
+begin
+      f_agendamento := tf_agendamento.Create(nil);
+
+       {f_meu_veiculo.SQLConnection1.Params.Clear;
+       f_meu_veiculo.SQLConnection1.Params.Add('DriverUnit=Data.DBXDataSnap');
+       f_meu_veiculo.SQLConnection1.Params.Add('CommunicationProtocol=tcp/ip');
+       f_meu_veiculo.SQLConnection1.Params.Add('DatasnapContext=datasnap/');
+       f_meu_veiculo.SQLConnection1.Params.Add('DriverAssemblyLoader=Borland.Data.TDBXClientDriverLoader,Borland.Data.DbxClientDriver,Version=22.0.0.0,Culture=neutral,PublicKeyToken=91d62ebb5b0d1b1b');
+       f_meu_veiculo.SQLConnection1.Params.Add('DriverName=DataSnap');
+       f_meu_veiculo.SQLConnection1.Params.Add('HostName='+servidor);
+       f_meu_veiculo.SQLConnection1.Params.Add('port=211');
+
+       f_meu_veiculo.SQLConnection1.Connected := true;
+       server := TServerMethods1client.Create(f_meu_veiculo.SQLConnection1.DBXConnection);
+       server.meu_carro(cod_cliente_nbs, meucarro, idveiculo, kmatual);
+       f_meu_veiculo.cdsmeucarro.Active := true;
+        }
+
+       f_agendamento.ShowModal(
+       procedure(ModalResult: TModalResult)
+       begin
+              {if meucarro = 'N' then
+              begin
+                   f_meu_veiculo.tbagendar.IsSelected := true;
+                   f_meu_veiculo.cbplaca.Items.Add('Cadastrar Veículo');
+              end;
+
+              if meucarro = 'S' then
+              begin
+                    f_meu_veiculo.tbagendar.IsSelected := true;
+              end;}
+
+              f_agendamento.Data.Date := now + 1;
+              f_agendamento.Show;
+              f_agendamento.Visible := true;
+
+       end);
+end;
+
+procedure Tf_principal.btcadastrarClick(Sender: TObject);
+begin
+      btvoltar.Visible := true;
+      tbcadastrar.IsSelected := true;
+
+end;
+
+procedure Tf_principal.btconfiguracoesClick(Sender: TObject);
+
+begin
+      f_configuracoes := tf_configuracoes.Create(nil);
+
+       f_configuracoes.ednome.Text := nome;
+       f_configuracoes.edtelefone.Text := telefone;
+       f_configuracoes.edemail.Text := email;
+       f_configuracoes.edcpf.text := cpf;
+       f_configuracoes.edsenha1.text := senha;
+       f_configuracoes.edsenha2.text := senha;
+
+
+
+       f_configuracoes.SQLConnection1.Params.Clear;
+       f_configuracoes.SQLConnection1.Params.Add('DriverUnit=Data.DBXDataSnap');
+       f_configuracoes.SQLConnection1.Params.Add('CommunicationProtocol=tcp/ip');
+       f_configuracoes.SQLConnection1.Params.Add('DatasnapContext=datasnap/');
+       f_configuracoes.SQLConnection1.Params.Add('DriverAssemblyLoader=Borland.Data.TDBXClientDriverLoader,Borland.Data.DbxClientDriver,Version=22.0.0.0,Culture=neutral,PublicKeyToken=91d62ebb5b0d1b1b');
+       f_configuracoes.SQLConnection1.Params.Add('DriverName=DataSnap');
+       f_configuracoes.SQLConnection1.Params.Add('HostName='+servidor);
+       f_configuracoes.SQLConnection1.Params.Add('port=211');
+       f_configuracoes.sqlconnection1.Connected := true;
+       server := TServerMethods1client.Create(f_configuracoes.SQLConnection1.DBXConnection);
+
+
+       if facebook = 'S' then
+       begin
+              f_configuracoes.ednome.Enabled := true;
+              f_configuracoes.edtelefone.Enabled := true;
+              f_configuracoes.edemail.Enabled := false;
+              f_configuracoes.edcpf.Enabled := true;
+              f_configuracoes.edsenha1.Enabled := false;
+              f_configuracoes.edsenha2.Enabled := false;
+
+       end;
+       if facebook = 'N' then
+       begin
+              f_configuracoes.ednome.Enabled := true;
+              f_configuracoes.edtelefone.Enabled := true;
+              f_configuracoes.edemail.Enabled := false;
+              f_configuracoes.edcpf.Enabled := true;
+              f_configuracoes.edsenha1.Enabled := true;
+              f_configuracoes.edsenha2.Enabled := true;
+
+       end;
+       f_configuracoes.Visible := true;
+end;
+
+procedure Tf_principal.btconsorcioClick(Sender: TObject);
+begin
+      f_consorcio := tf_consorcio.Create(nil);
+      f_consorcio.Show;
+      f_consorcio.Visible := true;
+end;
+
+procedure Tf_principal.btentrarClick(Sender: TObject);
+begin
+      servidor := cbservidor.Selected.Text;
+
+      AniIndicator.Enabled := true;
+      AniIndicator.Visible := true;
+
+      TThread.CreateAnonymousThread(
+       procedure()
+       begin
+       try
+
+              TThread.Synchronize(TThread.CurrentThread,
+              procedure()
+              begin
+                    try
+                        conectar;
+                        sqlconnection1.Connected := true;
+                        server := TServerMethods1client.Create(SQLConnection1.DBXConnection);
+                    except
+                        showmessage('Sem conexão com o servidor!');
+
+              end;
+
+              if server.autenticar(edlogin_email.text, edsenha.text) = 1 then
+              begin
+                    server.consulta_cliente(edlogin_email.text, nome, email, telefone, senha, cpf);
+                    cod_cliente_nbs := cpf;
+                    facebook := 'N';
+                    login1 := edlogin_email.text;
+                    senha1 := edsenha.Text;
+                    arquivo_ini_salvar;
+                    tbprincipal.IsSelected := true;
+
+                    //TLocalServiceConnection.StartService('Project3');
+
+              end
+              else
+              begin
+
+                    showmessage('Login e senha inválidos!');
+              end;
+
+
+                    AniIndicator.Enabled := false;
+                    AniIndicator.visible := false;
+              end);
+
+       except
+              TThread.Synchronize(TThread.CurrentThread,
+              procedure()
+              begin
+                    AniIndicator.Enabled := false;
+                     AniIndicator.visible := false;
+              end);
+
+       end;
+
+       end).Start;
+end;
+
+procedure Tf_principal.btnovocarroClick(Sender: TObject);
+begin
+
+      f_novo_carro := tf_novo_carro.Create(nil);
+      f_novo_carro.AniIndicator.Enabled := true;
+      f_novo_carro.AniIndicator.visible := true;
+
+
+
+       f_novo_carro.SQLConnection1.Params.Clear;
+       f_novo_carro.SQLConnection1.Params.Add('HostName='+servidor);
+       f_novo_carro.SQLConnection1.Params.Add('DriverUnit=Data.DBXDataSnap');
+       f_novo_carro.SQLConnection1.Params.Add('CommunicationProtocol=tcp/ip');
+       f_novo_carro.SQLConnection1.Params.Add('DatasnapContext=datasnap/');
+       f_novo_carro.SQLConnection1.Params.Add('DriverAssemblyLoader=Borland.Data.TDBXClientDriverLoader,Borland.Data.DbxClientDriver,Version=22.0.0.0,Culture=neutral,PublicKeyToken=91d62ebb5b0d1b1b');
+       f_novo_carro.SQLConnection1.Params.Add('DriverName=DataSnap');
+       f_novo_carro.SQLConnection1.Params.Add('port=211');
+
+
+
+       f_novo_carro.sqlconnection1.Connected := true;
+
+
+
+       server := TServerMethods1client.Create(f_novo_carro.SQLConnection1.DBXConnection);
+
+
+
+       server.consulta_modelos;
+
+
+
+       f_novo_carro.cds_modelos.Active := true;
+
+
+
+       f_novo_carro.AniIndicator.Enabled := false;
+       f_novo_carro.AniIndicator.visible := false;
+       f_novo_carro.cbcarro.Enabled := true;
+
+
+
+      //thread_novo_carro.Create();
+      //thread_novo_carro.Active := true;
+      f_novo_carro.Show;
+      f_novo_carro.Visible := true;
+
+
+end;
+
+procedure Tf_principal.btrevisoesClick(Sender: TObject);
+begin
+       f_revisoes := tf_revisoes.Create(nil);
+       if cpf <> '' then
+       f_revisoes.tbservicos.IsSelected := true
+       else
+       f_revisoes.tbcpf.IsSelected := true
+end;
+
+procedure Tf_principal.btsalvarClick(Sender: TObject);
+var
+result : integer;
+begin
+       servidor := cbservidor.Items.Text;
+
+
+       if (edcpf.Text <> '') and (ednome.Text <> '') and (edemail.Text <> '')
+       and (edsenha1.Text <> '') and (edsenha2.Text <> '') then
+       begin
+            if validar_cpf(edcpf.Text) = true  then
+            begin
+                  if edsenha1.text = edsenha2.text then
+                  begin
+                    AniIndicator.Enabled := true;
+                    AniIndicator.Visible := true;
+
+                    TThread.CreateAnonymousThread(
+                    procedure()
+                    begin
+                          try
+                          conectar;
+                          server := TServerMethods1client.Create(SQLConnection1.DBXConnection);
+                          server.cadastrar_cliente(edemail.Text, ednome.Text, edemail.text, edtelefone.Text, edsenha1.text, 'N', edcpf.Text, result);
+
+
+                          TThread.Synchronize(TThread.CurrentThread,
+                          procedure()
+                          begin
+                          if result = 1 then
+                          begin
+                                cod_cliente_nbs := (edcpf.Text);
+                                cpf := edcpf.Text;
+                                nome := ednome.Text;
+                                telefone := edtelefone.Text;
+                                email := edemail.text;
+                                senha := edsenha1.text;
+                                facebook := 'N';
+                                login1 := edemail.text;
+                                senha1 := edsenha1.Text;
+                                arquivo_ini_salvar;
+                                showmessage('Cadastrado com sucesso!');
+                                tbprincipal.IsSelected := true;
+                          end
+                          else
+                          if result = 0 then
+                          begin
+                                showmessage('Usuário já cadastrado!');
+                                ednome.text := '';
+                                edcpf.Text := '';
+                                edemail.Text := '';
+                                edtelefone.Text := '';
+                                edsenha1.Text := '';
+                                edsenha2.Text := '';
+                                tblogin.IsSelected := true;
+                          end;
+
+                          AniIndicator.enabled := false;
+	                        AniIndicator.visible := false;
+
+                          end);
+
+
+                          Except
+
+                          TThread.Synchronize(TThread.CurrentThread,
+                          procedure()
+                          begin
+	                              AniIndicator.enabled := false;
+	                              AniIndicator.visible := false;
+                          end);
+
+
+                    end;
+
+                  end).Start
+
+                  end
+                  else
+                  showmessage('Senhas não são iguais!');
+           end
+           else
+           showmessage('CPF Inválido!');
+       end
+       else
+       showmessage('Preencha todos os campos!');
+end;
+
+procedure Tf_principal.btvendadiretaClick(Sender: TObject);
+begin
+       f_venda_direta := tf_venda_direta.Create(nil);
+       f_venda_direta.AniIndicator.enabled := true;
+       f_venda_direta.AniIndicator.visible := true;
+       thread_venda_direta.Create();
+       thread_venda_direta.Active := true;
+       f_venda_direta.Show;
+       f_venda_direta.Visible := true;
+end;
+
+procedure Tf_principal.btvoltarClick(Sender: TObject);
+begin
+      if tbcadastrar.IsSelected = true then
+      begin
+           btvoltar.Visible := false;
+           tblogin.IsSelected := true;
+      end;
+
+      if tblogin_email.IsSelected = true then
+      begin
+           btvoltar.Visible := false;
+           tblogin.IsSelected := true;
+      end;
+
+
+ end;
+
+procedure Tf_principal.CalcContentBounds(Sender: TObject;
+  var ContentBounds: TRectF);
+begin
+       if FNeedOffset and (FKBBounds.Top > 0) then
+       begin
+             ContentBounds.Bottom := Max(ContentBounds.Bottom, 2 * ClientHeight - FKBBounds.Top);
+       end;
+end;
+
+procedure tf_principal.conectar;
+begin
+
+       servidor := cbservidor.Selected.Text;
+
+       SQLConnection1.Params.Clear;
+       SQLConnection1.Params.Add('DriverUnit=Data.DBXDataSnap');
+       SQLConnection1.Params.Add('CommunicationProtocol=tcp/ip');
+       SQLConnection1.Params.Add('DatasnapContext=datasnap/');
+       SQLConnection1.Params.Add('DriverAssemblyLoader=Borland.Data.TDBXClientDriverLoader,Borland.Data.DbxClientDriver,Version=22.0.0.0,Culture=neutral,PublicKeyToken=91d62ebb5b0d1b1b');
+       SQLConnection1.Params.Add('DriverName=DataSnap');
+       SQLConnection1.Params.Add('HostName='+servidor);
+       SQLConnection1.Params.Add('port=211');
+
+       SQLConnection1.Connected := true;
+end;
+
+procedure Tf_principal.edcpfKeyDown(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+       if key = vkreturn then
+      begin
+            edemail.SetFocus;
+      end;
+end;
+
+procedure Tf_principal.edemailKeyDown(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+      if key = vkreturn then
+      begin
+            edtelefone.SetFocus;
+      end;
+end;
+
+procedure Tf_principal.edtelefone_contatoClick(Sender: TObject);
+begin
+       if edtelefone_contato.Text = 'Telefone' then
+       begin
+            edtelefone_contato.Text := '';
+       end;
+end;
+
+procedure Tf_principal.edtelefone_contatoEnter(Sender: TObject);
+begin
+
+      edtelefone_contato.Text := copy(edtelefone_contato.Text,1,3)+copy(edtelefone_contato.Text,4,6)+copy(edtelefone_contato.Text,11,4);
+
+
+end;
+
+procedure Tf_principal.edtelefone_contatoExit(Sender: TObject);
+begin
+      if (copy(edtelefone_contato.Text,1,2) = '') or (copy(edtelefone_contato.Text,7,2) = '') then
+      begin
+            showmessage('Telefone Inválido!');
+            edtelefone_contato.SetFocus;
+      end
+      else
+      begin
+            edtelefone_contato.Text := '('+copy(edtelefone_contato.Text,1,2)+')'+copy(edtelefone_contato.Text,3,5)+'-'+copy(edtelefone_contato.Text,8,4);
+      end;
+end;
+
+procedure Tf_principal.edlogin_emailClick(Sender: TObject);
+begin
+       if edlogin_email.Text = 'Email' then
+       begin
+            edlogin_email.Text := '';
+       end;
+end;
+
+procedure Tf_principal.edlogin_emailExit(Sender: TObject);
+begin
+      if edlogin_email.text = '' then
+      edlogin_email.text := 'Email';
+end;
+
+procedure Tf_principal.edlogin_emailKeyDown(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+      if key = vkreturn then
+      begin
+            edsenha.OnClick(sender);
+            edsenha.setfocus;
+      end;
+end;
+
+procedure Tf_principal.ednomeKeyDown(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+      if key = vkreturn then
+      begin
+            edcpf.SetFocus;
+      end;
+end;
+
+procedure Tf_principal.edsenha1KeyDown(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+      if key = vkreturn then
+      begin
+            edsenha2.SetFocus;
+      end;
+end;
+
+procedure Tf_principal.edsenha2KeyDown(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+      if key = vkreturn then
+      begin
+            btsalvarclick(sender);;
+      end;
+end;
+
+procedure Tf_principal.edsenhaClick(Sender: TObject);
+begin
+      edsenha.Text := '';
+end;
+
+procedure Tf_principal.edsenhaKeyDown(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+      if key = vkreturn then
+      begin
+      btentrarclick(sender);
+      end;
+end;
+
+procedure Tf_principal.edtelefoneClick(Sender: TObject);
+begin
+      if edtelefone.Text = '' then
+      edtelefone.Text := '(  )     -    ';
+      if copy(edtelefone.Text,1,4) = '(  )'  then
+      edtelefone.Text := '';
+      if copy(edtelefone.Text,2,2) <> '  ' then
+      edtelefone.Text := copy(edtelefone.Text,1,3)+copy(edtelefone.Text,4,6)+copy(edtelefone.Text,11,4);
+
+
+end;
+
+procedure Tf_principal.edtelefoneEnter(Sender: TObject);
+begin
+      if edtelefone.Text = '' then
+      edtelefone.Text := '(  )     -    ';
+      if copy(edtelefone.Text,1,4) = '(  )'  then
+      edtelefone.Text := '';
+      if copy(edtelefone.Text,2,2) <> '  ' then
+      edtelefone.Text := copy(edtelefone.Text,1,3)+copy(edtelefone.Text,4,6)+copy(edtelefone.Text,11,4);
+
+
+
+
+end;
+
+procedure Tf_principal.edtelefoneExit(Sender: TObject);
+begin
+      if (copy(edtelefone.Text,1,2) = '') or (copy(edtelefone.Text,7,2) = '') then
+      begin
+            showmessage('Telefone Inválido!');
+            edtelefone.SetFocus;
+      end
+      else
+      begin
+            edtelefone.Text := '('+copy(edtelefone.Text,1,2)+')'+copy(edtelefone.Text,3,5)+'-'+copy(edtelefone.Text,8,4);
+      end;
+end;
+
+procedure Tf_principal.edtelefoneKeyDown(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+      if key = vkreturn then
+      begin
+            edsenha1.SetFocus;
+      end;
+
+end;
+
+procedure Tf_principal.FormCreate(Sender: TObject);
+var
+Arquivo : TIniFile;
+begin
+
+        VertScrollBox1.OnCalcContentBounds := CalcContentBounds;
+        tblogin.IsSelected := true;
+
+end;
+
+procedure Tf_principal.FormFocusChanged(Sender: TObject);
+begin
+      UpdatePosition;
+end;
+
+procedure Tf_principal.FormShow(Sender: TObject);
+var
+    Arquivo : TIniFile;
+begin
+       if FileExists(GetHomePath + PathDelim + 'frutos.ini') then
+        begin
+              Arquivo := TIniFile.Create(GetHomePath + PathDelim + 'frutos.ini');
+              login1 := Arquivo.ReadString('1','login','');
+              senha1 := Arquivo.ReadString('2','senha','');
+              facebook := Arquivo.ReadString('3','facebook','');
+              Arquivo.Free;
+              if login1 <> '' then
+              begin
+                    if facebook = 'N' then
+                    begin
+                          edlogin_email.Text := login1;
+                          edsenha.Text := senha1;
+                          btentrarclick(sender);
+                    end
+                    else
+                          btfacebookclick(sender);
+              end;
+
+        end
+        else
+        begin
+              Arquivo := TIniFile.Create(GetHomePath + PathDelim + 'frutos.ini');
+              Arquivo.WriteString('1','login', '');
+              Arquivo.WriteString('2', 'senha','');
+              Arquivo.WriteString('3', 'facebook','');
+              Arquivo.Free;
+        end;
+
+end;
+
+procedure Tf_principal.FormVirtualKeyboardHidden(Sender: TObject;
+  KeyboardVisible: Boolean; const Bounds: TRect);
+begin
+      FKBBounds.Create(0, 0, 0, 0);
+      FNeedOffset := False;
+      RestorePosition;
+end;
+
+procedure Tf_principal.FormVirtualKeyboardShown(Sender: TObject;
+  KeyboardVisible: Boolean; const Bounds: TRect);
+begin
+      FKBBounds := TRectF.Create(Bounds);
+      FKBBounds.TopLeft := ScreenToClient(FKBBounds.TopLeft);
+      FKBBounds.BottomRight := ScreenToClient(FKBBounds.BottomRight);
+      UpdatePosition;
+end;
+
+procedure Tf_principal.Image10Click(Sender: TObject);
+begin
+      btrevisoesclick(sender);
+end;
+
+procedure Tf_principal.btfacebookClick(Sender: TObject);
+      var
+result : integer;
+begin
+    jsAuthFacebook.Clear;
+    jsAuthFacebook.IdClient := '1049273178545085';
+    jsAuthFacebook.LoadAutoSave;
+
+    if jsAuthFacebook.TokenAccess <> '' then
+    Begin
+         If jsAuthFacebook.GetInfoFacebook Then
+         Begin
+
+                {Mm_Facebook.Lines.Clear;
+                Mm_Facebook.Lines.Add(' ID : ' + jsAuthFacebook.Id);
+                Mm_Facebook.Lines.Add(' Nome : ' + jsAuthFacebook.PersonsName);
+                Mm_Facebook.Lines.Add(' Nascimento : ' + jsAuthFacebook.Birthday);
+                Mm_Facebook.Lines.Add(' Primeiro Nome : ' + jsAuthFacebook.FirstPersonsName);
+                Mm_Facebook.Lines.Add(' Email : ' + jsAuthFacebook.Email);
+                Mm_Facebook.Lines.Add(' Token : ' + jsAuthFacebook.TokenAccess); }
+
+
+              conectar;
+              server := TServerMethods1client.Create(SQLConnection1.DBXConnection);
+              server.consulta_cliente(jsAuthFacebook.Email, nome, email, telefone, senha, cpf);
+              cod_cliente_nbs := cpf;
+              senha1 := 'f';
+              login1 := jsAuthFacebook.Email;
+              if email = '' then
+              begin
+                   server.cadastrar_cliente(jsAuthFacebook.Email, jsAuthFacebook.PersonsName, jsAuthFacebook.Email, '', senha1, facebook, '', result);
+                   facebook := 'S';
+                   arquivo_ini_salvar;
+
+                   nome := jsAuthFacebook.PersonsName;
+                   email := jsAuthFacebook.Email;
+                   senha :=  jsAuthFacebook.TokenAccess;
+
+                   tabcontrol2.ActiveTab := tbtelefone;
+
+
+              end
+              else
+              if login1 = '' then
+              begin
+                   facebook := 'S';
+                   arquivo_ini_salvar;
+                   if server.autenticar(login1, senha1) = 1 then
+                   begin
+                        tabcontrol2.ActiveTab := tbprincipal;
+                   end
+                   else
+                   begin
+                        showmessage('Login e senha inválidos!');
+                   end;
+              end
+              else
+              begin
+                    if telefone <> '' then
+                    begin
+                          if server.autenticar(login1, senha1) = 1 then
+                          begin
+                                facebook := 'S';
+                                tabcontrol2.ActiveTab := tbprincipal;
+                          end
+                          else
+                          begin
+                                showmessage('Login e senha inválidos!');
+                          end;
+
+                    end
+                    else
+                    begin
+                          tabcontrol2.ActiveTab := tbtelefone;
+                    end;
+
+              end;
+
+
+              facebook := 'S';
+           //if jsAuthFacebook.ImgProfile <> Nil then
+           //Cir_Facebook.Fill.Bitmap.Bitmap.LoadFromStream(jsAuthFacebook.ImgProfile);
+
+
+           //TabControl1.ActiveTab := Tab_Facebook;
+         End;
+
+  End
+  Else
+  Begin
+
+
+  jsAuthFacebook.AutoSave := True;
+  jsAuthFacebook.jsAuth(procedure
+  Begin
+
+     If (jsAuthFacebook.TokenAccess <> '')  Then
+     Begin
+
+         If jsAuthFacebook.GetInfoFacebook Then
+         Begin
+              {
+              Mm_Facebook.Lines.Clear;
+              Mm_Facebook.Lines.Add(' ID : ' + jsAuthFacebook.Id);
+              Mm_Facebook.Lines.Add(' Nome : ' + jsAuthFacebook.PersonsName);
+              Mm_Facebook.Lines.Add(' Nascimento : ' + jsAuthFacebook.Birthday);
+              Mm_Facebook.Lines.Add(' Primeiro Nome : ' + jsAuthFacebook.FirstPersonsName);
+              Mm_Facebook.Lines.Add(' Email : ' + jsAuthFacebook.Email);
+              Mm_Facebook.Lines.Add(' Token : ' + jsAuthFacebook.TokenAccess);}
+
+
+
+
+              conectar;
+              server := TServerMethods1client.Create(SQLConnection1.DBXConnection);
+              server.consulta_cliente(jsAuthFacebook.Email, nome, email, telefone, senha, cpf);
+              cod_cliente_nbs := cpf;
+              senha1 := 'f';
+              login1 := jsAuthFacebook.Email;
+              if email = '' then
+              begin
+                   server.cadastrar_cliente(jsAuthFacebook.Email, jsAuthFacebook.FirstPersonsName, jsAuthFacebook.Email, '', senha1, 'S', '' ,result);
+                   facebook := 'S';
+                   arquivo_ini_salvar;
+                   tabcontrol2.ActiveTab := tbtelefone;
+                   nome := jsAuthFacebook.PersonsName;
+                   email := jsAuthFacebook.Email;
+                   senha :=  jsAuthFacebook.TokenAccess;
+
+              end
+              else
+              if login1 = '' then
+              begin
+                   facebook := 'S';
+                   arquivo_ini_salvar;
+                   if server.autenticar(login1, senha1) = 1 then
+                   begin
+                        tabcontrol2.ActiveTab := tbprincipal;
+                   end
+                   else
+                   begin
+                        showmessage('Login e senha inválidos!');
+                   end;
+              end
+              else
+              begin
+                    if telefone <> '' then
+                    begin
+                          if server.autenticar(login1, senha1) = 1 then
+                          begin
+                                facebook := 'S';
+                                tabcontrol2.ActiveTab := tbprincipal;
+                          end
+                          else
+                          begin
+                                showmessage('Login e senha inválidos!');
+                          end;
+
+                    end
+                    else
+                    begin
+                          tabcontrol2.ActiveTab := tbtelefone;
+                    end;
+
+              end;
+
+
+
+           //if jsAuthFacebook.ImgProfile <> Nil then
+           //Cir_Facebook.Fill.Bitmap.Bitmap.LoadFromStream(jsAuthFacebook.ImgProfile);
+
+           //TabControl1.ActiveTab := Tab_Facebook;
+
+         End
+         Else
+         ShowMessage('Erro ao recuperar informações da conta.');
+
+     End
+     Else
+     ShowMessage('Erro na autenticação');
+
+  End);
+
+  end;
+end;
+
+procedure Tf_principal.Image1Click(Sender: TObject);
+begin
+      btnovocarroclick(sender);
+end;
+
+procedure Tf_principal.Image2Click(Sender: TObject);
+begin
+      btvendadiretaclick(sender);
+end;
+
+procedure Tf_principal.Image3Click(Sender: TObject);
+begin
+      btagendarclick(sender);
+end;
+
+procedure Tf_principal.Image5Click(Sender: TObject);
+begin
+      btconfiguracoesclick(sender);
+end;
+
+procedure Tf_principal.Image7Click(Sender: TObject);
+begin
+      btconsorcioclick(sender);
+end;
+
+procedure Tf_principal.btemailClick(Sender: TObject);
+
+begin
+        tblogin_email.IsSelected := true;
+        btvoltar.Visible := true;
+
+
+end;
+
+procedure Tf_principal.btfinalizarClick(Sender: TObject);
+var
+result : integer;
+begin
+                  server := TServerMethods1client.Create(SQLConnection1.DBXConnection);
+                  server.atualiza_cliente(email, senha1, email, edtelefone_contato.Text, nome, cpf, result);
+                  if result = 1 then
+                  begin
+                        telefone := edtelefone_contato.Text;
+                        f_principal.tbprincipal.IsSelected := true;
+                  end
+                  else
+
+                  if result = 0 then
+                  begin
+                        showmessage('Erro! Contate Administrador do Sistema!');
+                  end;
+end;
+
+procedure Tf_principal.Label2Click(Sender: TObject);
+begin
+      btnovocarroclick(sender);
+end;
+
+procedure Tf_principal.Label3Click(Sender: TObject);
+begin
+      btvendadiretaclick(sender);
+end;
+
+procedure Tf_principal.Label4Click(Sender: TObject);
+begin
+      btagendarclick(sender);
+end;
+
+procedure Tf_principal.Label5Click(Sender: TObject);
+begin
+      btconsorcioclick(sender);
+end;
+
+procedure Tf_principal.Label6Click(Sender: TObject);
+begin
+      btrevisoesclick(sender);
+end;
+
+procedure Tf_principal.Label7Click(Sender: TObject);
+begin
+      btconfiguracoesclick(sender);
+end;
+
+procedure Tf_principal.login_emailClick(Sender: TObject);
+begin
+      tbcadastrar.IsSelected := true;
+      btvoltar.Visible := true;
+end;
+
+procedure Tf_principal.RestorePosition;
+begin
+       VertScrollBox1.ViewportPosition := PointF(VertScrollBox1.ViewportPosition.X, 0);
+       VertScrollBox1.Align := TAlignLayout.Client;
+       VertScrollBox1.RealignContent;
+end;
+
+procedure Tf_principal.thread_novo_carroRun(Sender: TIdThreadComponent);
+begin
+       f_novo_carro.SQLConnection1.Params.Clear;
+       f_novo_carro.SQLConnection1.Params.Add('HostName='+servidor);
+       f_novo_carro.SQLConnection1.Params.Add('DriverUnit=Data.DBXDataSnap');
+       f_novo_carro.SQLConnection1.Params.Add('CommunicationProtocol=tcp/ip');
+       f_novo_carro.SQLConnection1.Params.Add('DatasnapContext=datasnap/');
+       f_novo_carro.SQLConnection1.Params.Add('DriverAssemblyLoader=Borland.Data.TDBXClientDriverLoader,Borland.Data.DbxClientDriver,Version=22.0.0.0,Culture=neutral,PublicKeyToken=91d62ebb5b0d1b1b');
+       f_novo_carro.SQLConnection1.Params.Add('DriverName=DataSnap');
+       f_novo_carro.SQLConnection1.Params.Add('port=211');
+
+
+       f_novo_carro.sqlconnection1.Connected := true;
+
+       server := TServerMethods1client.Create(f_novo_carro.SQLConnection1.DBXConnection);
+
+       server.consulta_modelos;
+
+       f_novo_carro.cds_modelos.Active := true;
+
+
+       f_novo_carro.AniIndicator.Enabled := false;
+       f_novo_carro.AniIndicator.visible := false;
+       f_novo_carro.cbcarro.Enabled := true;
+
+       thread_novo_carro.Stop;
+       thread_novo_carro.Terminate;
+
+end;
+
+procedure Tf_principal.thread_venda_diretaRun(Sender: TIdThreadComponent);
+begin
+       f_venda_direta.SQLConnection1.Params.Clear;
+       f_venda_direta.SQLConnection1.Params.Add('HostName='+servidor);
+       f_venda_direta.SQLConnection1.Params.Add('DriverUnit=Data.DBXDataSnap');
+       f_venda_direta.SQLConnection1.Params.Add('CommunicationProtocol=tcp/ip');
+       f_venda_direta.SQLConnection1.Params.Add('DatasnapContext=datasnap/');
+       f_venda_direta.SQLConnection1.Params.Add('DriverAssemblyLoader=Borland.Data.TDBXClientDriverLoader,Borland.Data.DbxClientDriver,Version=22.0.0.0,Culture=neutral,PublicKeyToken=91d62ebb5b0d1b1b');
+       f_venda_direta.SQLConnection1.Params.Add('DriverName=DataSnap');
+       f_venda_direta.SQLConnection1.Params.Add('port=211');
+
+       f_venda_direta.sqlconnection1.Connected := true;
+       server := TServerMethods1client.Create(f_venda_direta.SQLConnection1.DBXConnection);
+       server.consulta_modelos;
+       server.consulta_tipo_cliente;
+       f_venda_direta.cds_tipo_cliente.Active := true;
+       f_venda_direta.cds_modelos.Active := true;
+
+       f_venda_direta.AniIndicator.enabled := false;
+       f_venda_direta.AniIndicator.visible := false;
+
+       f_venda_direta.cbcarro.Enabled := true;
+       f_venda_direta.cbcliente.enabled := true;
+       thread_venda_direta.Stop;
+       thread_venda_direta.Terminate;
+end;
+
+procedure Tf_principal.UpdatePosition;
+var
+  LFocused : TControl;
+  LFocusRect: TRectF;
+begin
+      FNeedOffset := False;
+      if Assigned(Focused) then
+      begin
+            LFocused := TControl(Focused.GetObject);
+            LFocusRect := LFocused.AbsoluteRect;
+            LFocusRect.Offset(VertScrollBox1.ViewportPosition);
+    if (LFocusRect.IntersectsWith(TRectF.Create(FKBBounds))) and
+       (LFocusRect.Bottom > FKBBounds.Top) then
+    begin
+      FNeedOffset := True;
+      MainLayout1.Align := TAlignLayout.Horizontal;
+      VertScrollBox1.RealignContent;
+      Application.ProcessMessages;
+      VertScrollBox1.ViewportPosition :=
+        PointF(VertScrollBox1.ViewportPosition.X,
+               LFocusRect.Bottom - FKBBounds.Top);
+    end;
+  end;
+  if not FNeedOffset then
+    RestorePosition;
+
+end;
+
+end.
